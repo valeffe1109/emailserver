@@ -2,7 +2,10 @@ const express = require('express')
 const server = express();
 const PORT = process.env.PORT||5000;
 const emailRoute = require('./api/routes/email');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+server.use(cors())
 server.use(express.json())
 
 server.use('/email',emailRoute)
