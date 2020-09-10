@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const Customer = require("../../models/Customer");
+const nodemailerSendgrid  = require('nodemailer-sendgrid');
 
 const transport = nodemailer.createTransport(
-  nodemailerSendgrid({
-    apiKey: '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',
-  
-})
+    nodemailerSendgrid({
+      apiKey:"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"
+  })
 );
 
 router.post("/", async (req, res) => {
@@ -37,12 +37,10 @@ router.post("/", async (req, res) => {
     name: req.body.name,
     email: req.body.email,
   });
-  try {
+ 
     const savedCustomer = await customer.save();
-    res.send(savedCustomer);
-  } catch (err) {
-    res.status(400).send(err);
-  }
+  
+ 
 
   transport.sendMail(message, function (err, info) {
     if (err) {
