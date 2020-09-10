@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
+const Customer = require('../../models/Customer');
 
 const transport = nodemailer.createTransport({
   service: "gmail",
@@ -30,6 +31,18 @@ router.post("/",(req, res) => {
             Allelica team
             </p>`,
     };
+    
+    const customer = new Customer({
+      name: req.body.name,
+      emauil:req.body.email
+    })
+    try {
+      const savedCustomer = await customer.save();
+      res.send(savedCustomer);
+    } catch (err) {
+      res.status(400).send(err);
+    }
+
     transport.sendMail(message, function (err, info) {
       if (err) {
         res.send(err)
