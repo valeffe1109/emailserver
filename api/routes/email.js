@@ -11,7 +11,7 @@ const transport = nodemailer.createTransport({
   },
 });
 
-router.post("/",(req, res) => {
+router.post("/",async(req, res) => {
     const message = {
       from: "elonmusk@tesla.com",
       to: `${req.body.email}`,
@@ -31,7 +31,7 @@ router.post("/",(req, res) => {
             Allelica team
             </p>`,
     };
-    
+
     const customer = new Customer({
       name: req.body.name,
       emauil:req.body.email
