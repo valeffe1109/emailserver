@@ -34,7 +34,7 @@ router.post("/",async(req, res) => {
 
     const customer = new Customer({
       name: req.body.name,
-      emauil:req.body.email
+      email:req.body.email
     })
     try {
       const savedCustomer = await customer.save();
