@@ -3,13 +3,12 @@ const router = express.Router();
 const nodemailer = require("nodemailer");
 const Customer = require("../../models/Customer");
 
-const transport = nodemailer.createTransport({
-  service: "sendgrid",
-  auth: {
-    api_user: "allelica",
-    api_key: "0Nmdcdnv7!_sendgrid",
-  },
-});
+const transport = nodemailer.createTransport(
+  nodemailerSendgrid({
+    apiKey: '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',
+  
+})
+);
 
 router.post("/", async (req, res) => {
   const message = {
@@ -29,7 +28,7 @@ router.post("/", async (req, res) => {
       For any questions you may have, feel free to send me an email. We look forward to connecting with you. <br/>
       
       Have a lovely day, <br/>
-      
+    
       Colleen <br/>
             </p>`,
   };
