@@ -4,38 +4,36 @@ const nodemailer = require("nodemailer");
 const Customer = require("../../models/Customer");
 const nodemailerSendgrid  = require('nodemailer-sendgrid');
 
-const transport = nodemailer.createTransport(
-    nodemailerSendgrid({
-      apiKey:"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"
-  })
-);
-
+const transport = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'infodevlife.it@gmail.com',
+    pass: 'Vergine97' // naturally, replace both with your real credentials or an application-specific password
+  }
+});
 router.post("/", async (req, res) => {
   const message = {
-    from: "info@allelica.com",
+    from: "infodevlife.it@gmail.com",
     to: `${req.body.email}`,
-    subject: "Request a demo with Allelica",
-    html: `<p>Dear ${req.body.name},<br>
+    subject: "Richiesta informazioni DevLife",
+    html: `<p>Caro ${req.body.name},<br>
     
-      Thank you for visiting our website! We are glad to welcome you to Allelica’s community of medical professionals and researchers. <br/>
+      Grazie per aver visitato il nostro sito e per averci contattato!. <br/>
 
-      To discover more about polygenic risk scores for complex diseases or to explore the various functionalities of our technology, you can visit our blog here. <br/>
+      Benvenuto nella nostra community verrai ricontattato a breve . <br/>
       
-      You can also book a free demo of our software with one of Allelica’s specialists today: https://calendly.com/allelica/demo <br/>
+      Puoi anche scegliere di prenotare un meeting 1on1 dove poter chiarire tutti i tuoi dubbi : https://calendly.com/valeriofuscodev/devlife-colloquio?back=1&month=2020-09 <br/>
       
-      If you can’t find a time that suits you, just let me know and I’d be happy to accommodate your schedule.<br/>
-      
-      For any questions you may have, feel free to send me an email. We look forward to connecting with you. <br/>
-      
-      Have a lovely day, <br/>
+      Buona giornata, <br/>
     
-      Colleen <br/>
+      Valerio <br/>
             </p>`,
   };
 
   const customer = new Customer({
     name: req.body.name,
     email: req.body.email,
+    questions:req.body.questions
   });
  
     const savedCustomer = await customer.save();
