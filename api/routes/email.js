@@ -7,13 +7,13 @@ const nodemailerSendgrid  = require('nodemailer-sendgrid');
 const transport = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'infodevlife.it@gmail.com',
+    user: 'informazionidevlife@gmail.com',
     pass: 'Vergine97' // naturally, replace both with your real credentials or an application-specific password
   }
 });
 router.post("/", async (req, res) => {
   const message = {
-    from: "infodevlife.it@gmail.com",
+    from: "infodevlifeit@gmail.com",
     to: `${req.body.email}`,
     subject: "Richiesta informazioni DevLife",
     html: `<p>Caro ${req.body.name},<br>
