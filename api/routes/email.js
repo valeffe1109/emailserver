@@ -13,7 +13,7 @@ const transport = nodemailer.createTransport({
 });
 router.post("/", async (req, res) => {
   const message = {
-    from: "infodevlifeit@gmail.com",
+    from: "informazionidevlife@gmail.com",
     to: `${req.body.email}`,
     subject: "Richiesta informazioni DevLife",
     html: `<p>Caro ${req.body.name},<br>
